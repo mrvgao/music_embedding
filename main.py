@@ -1,5 +1,5 @@
 import glob
-from change_mp3_to_wav import change_file_to_wav
+from change_mp3_to_wav import change_file_batches_to_wav
 from random_sampling_wav import get_discrete_data
 import pickle
 
@@ -21,7 +21,7 @@ pickle_path = config['pickle_path']
 cpu_num = int(config['cpu_num'])
 
 mp3_files = glob.glob(mp3_src_pattern)
-wav_files = list(map(change_file_to_wav, mp3_files))
+wav_files = change_file_batches_to_wav(mp3_files, cpu_num=cpu_num)
 result = get_discrete_data(wav_files, token_path=token_file_path, test_mode=True, multiply_process_num=cpu_num)
 
 with open(pickle_path, 'wb') as f:

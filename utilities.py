@@ -24,6 +24,11 @@ def search_nearest(value, L):
         return L[half_left] if left_delta <= right_delta else L[half_right]
 
 
+def chunks(L, bins):
+    bin_size = max(len(L) // bins, 1)
+    return (L[i: i+bin_size] for i in range(0, len(L), bin_size))
+
+
 test_L = [1, 2, 3, 4, 5, 6]
 assert search_nearest(1, test_L) == 1
 assert search_nearest(0, test_L) == 1

@@ -6,8 +6,8 @@ from collections import Counter
 from multiprocessing import Pool
 import multiprocessing
 from functools import reduce
-import glob
 from itertools import repeat
+from utilities import chunks
 
 
 wav_max = 25000
@@ -61,10 +61,6 @@ def change_wav_to_sampling_discrete(wav_file, tokens_file_path, sampling_num=1, 
 def reduce_merge_result(v1, v2):
     return v1 + v2
 
-
-def chunks(L, bins):
-    bin_size = max(len(L) // bins, 1)
-    return (L[i: i+bin_size] for i in range(0, len(L), bin_size))
 
 
 def run_multiply_process(files, tokens_path, test_mode=False, cpu_number=None):
