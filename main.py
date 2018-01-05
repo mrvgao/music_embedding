@@ -22,7 +22,7 @@ cpu_num = int(config['cpu_num'])
 
 mp3_files = glob.glob(mp3_src_pattern)
 wav_files = change_file_batches_to_wav(mp3_files, cpu_num=cpu_num)
-result = get_discrete_data(wav_files, token_path=token_file_path, test_mode=True, multiply_process_num=cpu_num)
+result = get_discrete_data(wav_files, token_path=token_file_path, test_mode=False, multiply_process_num=cpu_num)
 
 with open(pickle_path, 'wb') as f:
     pickle.dump(result, f)
