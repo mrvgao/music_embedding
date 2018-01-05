@@ -22,15 +22,15 @@ def get_music_notation(value):
 v_func = np.vectorize(get_music_notation)
 
 
-def change_file_batches(file_batches):
+def change_file_batches(file_batches, token_file_path):
     vocabulary = Counter()
     sample_num = 200
     for f in file_batches:
-        vocabulary += change_wav_to_sampling_discrete(f, sample_num)
+        vocabulary += change_wav_to_sampling_discrete(f, token_file_path, sample_num)
     return vocabulary
 
 
-def change_wav_to_sampling_discrete(wav_file, sampling_num=1):
+def change_wav_to_sampling_discrete(wav_file, tokens_file_path, sampling_num=1):
     original_file_name = wav_file
     rate, data = wav.read(original_file_name)
     datas = np.array_split(data, sampling_num)
@@ -45,7 +45,7 @@ def change_wav_to_sampling_discrete(wav_file, sampling_num=1):
         # wav.write(data=discrete_data, rate=rate, filename=file_name)
 
         discrete_data = list(map(tuple, list(discrete_data)))
-        with open('dataset/discretes/tokens_corpus.txt', 'a') as f:
+        with open(tokens_file_path, 'a') as f:
             f.write('\n')
             for data in discrete_data:
                 f.write(str(data).replace(' ', '') + ' ')
