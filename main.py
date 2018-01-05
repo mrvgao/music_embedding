@@ -18,6 +18,7 @@ config = parse_config('main.conf')
 mp3_src_pattern = config['map3_src']
 token_file_path = config['token_path']
 pickle_path = config['pickle_path']
+cpu_num = int(config['cpu_num'])
 
 mp3_files = glob.glob(mp3_src_pattern)
 wav_files = list(map(change_file_to_wav, mp3_files))
