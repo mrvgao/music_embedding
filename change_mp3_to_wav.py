@@ -9,6 +9,7 @@ def change_file_to_wav(file_path):
     sound = AudioSegment.from_mp3(file_path)
 
     new_file_name = change_ext(file_path, 'wav')
+    print('converting {} ==> {}'.format(file_path, new_file_name))
 
     sound.export(new_file_name, format='wav')
 
